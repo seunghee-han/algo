@@ -25,7 +25,7 @@ int main(void) {
 }
 */
 
-//유클리드 호
+//유클리드 호제법
 int gcd(int x, int y) {
 	if (y == 0)
 		return x;
