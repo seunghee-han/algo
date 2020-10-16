@@ -1,12 +1,14 @@
 #include <stdio.h>
 
 /*
+
+//ì¬ê·€í•¨ìˆ˜
 int factorial(int n) {
 
-	printf("factorial ÁøÀÔ n: %d\n", n);
+	printf("factorial ì§„ì… n: %d\n", n);
 	if (n > 0){
 		int result = factorial(n - 1);
-		printf("factorial  ÁøÃâ n: %d\n");
+		printf("factorial  ì§„ì¶œ n: %d\n");
 		return n * result;
 }
 	else
@@ -14,15 +16,16 @@ int factorial(int n) {
 }
 int main(void) {
 	int x;
-	printf("Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	printf("ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
 	scanf_s("%d", &x);
-	printf("%dÀÇ ¼øÂ÷°ö¼À °ªÀº %dÀÔ´Ï´Ù.\n", x, factorial(x));
+	printf("%dì˜ ìˆœì°¨ê³±ì…ˆ ê°’ì€ %dì…ë‹ˆë‹¤.\n", x, factorial(x));
 
 	return 0;
 
 }
 */
 
+//ìœ í´ë¦¬ë“œ í˜¸
 int gcd(int x, int y) {
 	if (y == 0)
 		return x;
@@ -33,12 +36,12 @@ int gcd(int x, int y) {
 int main(void) {
 
 	int x, y;
-	puts("µÎ Á¤¼öÀÇ ÃÖ´ë°ø¾à¼ö¸¦ ±¸ÇÕ´Ï´Ù.");
-	printf("Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	puts("ë‘ ì •ìˆ˜ì˜ ìµœëŒ€ê³µì•½ìˆ˜ë¥¼ êµ¬í•©ë‹ˆë‹¤.");
+	printf("ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
 	scanf_s("%d", &x);
-	printf("Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ");
+	printf("ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ");
 	scanf_s("%d", &y);
-	printf("ÃÖ´ë°ø¾à¼ö´Â %dÀÔ´Ï´Ù. \n", gcd(x, y));
+	printf("ìµœëŒ€ê³µì•½ìˆ˜ëŠ” %dì…ë‹ˆë‹¤. \n", gcd(x, y));
 
 	return 0;
 }
