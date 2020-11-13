@@ -1,51 +1,54 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define swap(type, x,y) do{type t=x;x=y;y=t;} while(0)
-/* 단순 선택 정렬
-// 비교횟수: (n^2-n)/2
-void selection(int a[], int n) {
+#include<stdio.h>
+#include<stdlib.h>
+static int* buff;
 
-	int i, j;
-	for (i = 0; i < n - 1; i++) {
-		int min = i;
-		for (j = i + 1; j < n; j++)
-			if (a[j] < a[min])
-				min = j;
-		swap(int, a[i], a[min]);
-	}
-}
-*/
+static void __mergesort(int a[], int left, int right){
 
-void insertion(int a[], int n) {
-	int i, j;
-	for (i = 1; i < n; i++) {
-		int tmp = a[i];
-		for (j = i; j > 0 && a[j - 1] > tmp; j--)
-			a[j] = a[j - 1];
-		a[j] = tmp;
+	if (left < right) {
+		int center = (left + right) / 2;
+		int p = 0;
+		int i;
+		int j = 0;
+		int k = left;
+		__mergesort(a, left, center);
+		__mergesort(a, center + 1, right);
+		for (i = left; i <= center; i++)
+			buff[p++] = a[i];
+		while (i <= right && j < p)
+			a[k++] = (buff[j] <= a[i]) ? buff[j++] : a[i++];
+		while (j < p)
+			a[k++] = buff[j++];
 	}
 }
 
-int main(void) {
+
+int mergesort(int a[], int n){
+
+	if ((buff = (int*)calloc(n, sizeof(int))) == NULL)
+		return -1;
+	__mergesort(a, 0, n - 1);
+	free(buff);
+	return 0;
+}
+
+int main(){
+
 	int i, nx;
 	int* x;
-	puts("단순 삽입 정렬");
-
-	printf("요소개수: ");
-	scnaf("%d", &nx);
-	x = calloc(nx, sizeof(int));
+	puts("병합 정렬");
+	printf("요소 개수 : ");
+	scanf_s("%d", &nx);
+	x = (int*)calloc(nx, sizeof(int));
 
 	for (i = 0; i < nx; i++) {
-		printf("x[%d]: ", i);
-		scanf_s("%d", &x[i]); 
+		printf("x[%d] : ", i);
+		scanf_s("%d", &x[i]);
 	}
 
-	insertion(x, nx);
-
+	mergesort(x, nx);
 	puts("오름차순으로 정렬했습니다.");
 	for (i = 0; i < nx; i++)
-		printf("x[%d]=%d\n", i, x[i]);
-
+		printf("x[%d] = %d\n", i, x[i]);
 	free(x);
 
 	return 0;
