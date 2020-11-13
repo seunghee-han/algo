@@ -1,54 +1,48 @@
-#include<stdio.h>
-#include<stdlib.h>
-static int* buff;
+#include <stdio.h>
+#include <stdlib.h>
 
-static void __mergesort(int a[], int left, int right){
+#define swap (type, x, y) do {type t=x; x=y; y=t;} while(0)
 
-	if (left < right) {
-		int center = (left + right) / 2;
-		int p = 0;
-		int i;
-		int j = 0;
-		int k = left;
-		__mergesort(a, left, center);
-		__mergesort(a, center + 1, right);
-		for (i = left; i <= center; i++)
-			buff[p++] = a[i];
-		while (i <= right && j < p)
-			a[k++] = (buff[j] <= a[i]) ? buff[j++] : a[i++];
-		while (j < p)
-			a[k++] = buff[j++];
+static void downheap(int a[], int left, int right) {
+	int temp = a[left];
+	int child;
+	int parent;
+	for (parent = left; parent < (right + 1) / 2; parent = child) {
+		int cl = parent * 2 + 1;
+		int cr = cl + 1;
+		child = (cr <= right && a[cr] > a[cl]) ? cr : cl;
+		if (temp >= a[child])
+			break;
+		a[parent] = a[child];
+	}
+	a[parent] = temp;
+}
+
+void heapsort(int a[], int n) {
+	int i;
+	for (i = (n - 1) / 2; i >= 0; i--)
+		downheap(a, i, n - 1);
+	for (i = n - 1; i > 0; i--) {
+		swap(int, a[0], a[i]);
+		downheap(a, 0, i - 1);
 	}
 }
 
-
-int mergesort(int a[], int n){
-
-	if ((buff = (int*)calloc(n, sizeof(int))) == NULL)
-		return -1;
-	__mergesort(a, 0, n - 1);
-	free(buff);
-	return 0;
-}
-
-int main(){
-
+int main(void) {
 	int i, nx;
 	int* x;
-	puts("병합 정렬");
-	printf("요소 개수 : ");
-	scanf_s("%d", &nx);
-	x = (int*)calloc(nx, sizeof(int));
-
+	puts("힙 정렬");
+	printf("요소 개수: ");
+	scanf("%d", &nx);
+	x = calloc(nx, sizeof(int));
 	for (i = 0; i < nx; i++) {
-		printf("x[%d] : ", i);
-		scanf_s("%d", &x[i]);
+		printf("x[%d]: ", i);
+		scanf("%d", &x[i]);
 	}
-
-	mergesort(x, nx);
+	heapsort(x, nx);
 	puts("오름차순으로 정렬했습니다.");
 	for (i = 0; i < nx; i++)
-		printf("x[%d] = %d\n", i, x[i]);
+		printf("x[%d]= %d\n", i, x[i]);
 	free(x);
 
 	return 0;
