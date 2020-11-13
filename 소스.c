@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define swap (type, x, y) do {type t=x; x=y; y=t;} while(0)
+#define swap(type, x, y) do {type t=x; x=y; y=t;} while(0)
 
 static void downheap(int a[], int left, int right) {
 	int temp = a[left];
@@ -31,16 +31,17 @@ void heapsort(int a[], int n) {
 int main(void) {
 	int i, nx;
 	int* x;
-	puts("Èü Á¤·Ä");
-	printf("¿ä¼Ò °³¼ö: ");
+	puts("íž™ ì •ë ¬");
+	printf("ìš”ì†Œ ê°œìˆ˜: ");
 	scanf("%d", &nx);
 	x = calloc(nx, sizeof(int));
 	for (i = 0; i < nx; i++) {
 		printf("x[%d]: ", i);
 		scanf("%d", &x[i]);
 	}
+	
 	heapsort(x, nx);
-	puts("¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇß½À´Ï´Ù.");
+	puts("ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í–ˆìŠµë‹ˆë‹¤.");
 	for (i = 0; i < nx; i++)
 		printf("x[%d]= %d\n", i, x[i]);
 	free(x);
