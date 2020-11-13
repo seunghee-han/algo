@@ -1,42 +1,50 @@
-#include<stdio.h>
-#include<stdlib.h>
-#define swap(type, x, y) do {type t = x; x = y; y = t; }while(0)
+#include <stdio.h>
+#include <stdlib.h>
 
-void quick(int a[], int left, int right){ 
-	int pl = left;
-	int pr = right;
-	int x = a[(pl + pr) / 2];
-	do {
-		while (a[pl] < x)pl++;
-		while (a[pr] > x)pr--;
-		if (pl <= pr) {
-			swap(int, a[pl], a[pr]);
-			pl++;
-			pr--;
-		}
+void merge(const int a[], int na, const int b[], int nb, int c[]){
+	int pa = 0;
+	int pb = 0;
+	int pc = 0;
 
-	} while (pl <= pr);
-	if (left < pr) quick(a, left, pr);
-	if (pl < right) quick(a, pl, right);
+	while (pa < na && pb < nb)
+		c[pc++] = (a[pa] <= b[pb]) ? a[pa++] : b[pb++];
+	while (pa < na)
+		c[pc++] = a[pa++];
+	while (pb < nb)
+		c[pc++] = b[pb++];
 }
 
-int main(){
-	int i, nx;
-	int* x;
-	puts("퀵 정렬");
-	printf("요소 개수 : ");
-	scanf_s("%d", &nx);
-	x = (int*)calloc(nx, sizeof(int));
-	for (i = 0; i < nx; i++) {
-		printf("x[%d] : ", i);
-		scanf_s("%d", &x[i]);
+int main()
+{
+	int i, na, nb;
+	int* a, * b, * c;
+	printf("a의 요소 개수 : "); scanf_s("%d", &na);
+	printf("b의 요소 개수 : "); scanf_s("%d", &nb);
+	a = calloc(na, sizeof(int));
+	b = calloc(nb, sizeof(int));
+	c = calloc(na + nb, sizeof(int));
+	printf("a[0] : ");
+	scanf_s("%d", &a[0]);
+	for (i = 1; i < na; i++) {
+		do {
+			printf("a[%d] : ", i);
+			scanf_s("%d", &a[i]);
+		} while (a[i] < a[i - 1]);
+	}
+	printf("b[0] : ");
+	scanf_s("%d", &b[0]);
+	for (i = 1; i < nb; i++) {
+		do {
+			printf("b[%d] : ", i);
+			scanf_s("%d", &b[i]);
+		} while (b[i] < b[i - 1]);
 	}
 
-	quick(x, 0, nx - 1);
-	puts("오름차순으로 정렬했습니다.");
-	for (i = 0; i < nx; i++)
-		printf("x[%d] = %d\n", i, x[i]);
-	free(x);
+	merge(a, na, b, nb, c);
+	puts("배열 a와 b를 병합하여 배열 c에 저장했습니다.");
+	for (i = 0; i < na + nb; i++)
+		printf("c[2%d] = %2d\n", i, c[i]);
+	free(a); free(b); free(c);
 
 	return 0;
 }
