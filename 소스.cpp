@@ -3,8 +3,8 @@
 
 void fsort(int a[], int n, int max) {
 	int i;
-	int* f = calloc(max + 1, sizeof(int));
-	int* b = calloc(n, sizeof(int));
+	int *f = (int*)calloc(max + 1, sizeof(int));
+	int *b = (int*)calloc(n, sizeof(int));
 
 	for (i = 0; i < max; i++)f[i] = 0;
 	for (i = 0; i < n; i++)f[a[i]]++;
@@ -20,26 +20,26 @@ int main(void) {
 	int i, nx;
 	int* x;
 	const int max = 100;
-	puts("ë„ìˆ˜ì •ë ¬");
-	printf("ìš”ì†Œê°œìˆ˜: ");
+	puts("µµ¼öÁ¤·Ä");
+	printf("¿ä¼Ò°³¼ö: ");
 
-	scanf("%d", &nx);
-	x = calloc(nx, sizeof(int));
-	printf("0~%dì˜ ì •ìˆ˜ë¥¼ ìž…ë ¥í•˜ì„¸ìš”.\n", max);
+	scanf_s("%d", &nx);
+	x = (int*)calloc(nx, sizeof(int));
+	printf("0~%dÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n", max);
 
 	for (i = 0; i < nx; i++) {
 		do {
 			printf("x[%d]: ", i);
-			scanf("%d", &x[i]);
+			scanf_s("%d", &x[i]);
 		} while (x[i]<0 || x[i]>max);
 	}
 
 	fsort(x, nx, max);
-	puts("ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í–ˆìŠµë‹ˆë‹¤.");
+	puts("¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇß½À´Ï´Ù.");
 
 	for (i = 0; i < nx; i++)
 		printf("x[%d]=%d\n", i, x[i]);
-	
+
 	free(x);
 
 	return 0;
