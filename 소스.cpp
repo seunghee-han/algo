@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void fsort(int a[], int max) {
+void fsort(int a[], int n, int max) {
 	int i;
 	int* f = calloc(max + 1, sizeof(int));
 	int* b = calloc(n, sizeof(int));
@@ -20,12 +20,12 @@ int main(void) {
 	int i, nx;
 	int* x;
 	const int max = 100;
-	puts("µµ¼öÁ¤·Ä");
-	printf("¿ä¼Ò°³¼ö: ");
+	puts("ë„ìˆ˜ì •ë ¬");
+	printf("ìš”ì†Œê°œìˆ˜: ");
 
 	scanf("%d", &nx);
 	x = calloc(nx, sizeof(int));
-	printf("0~%dÀÇ Á¤¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä.\n", max);
+	printf("0~%dì˜ ì •ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš”.\n", max);
 
 	for (i = 0; i < nx; i++) {
 		do {
@@ -35,7 +35,7 @@ int main(void) {
 	}
 
 	fsort(x, nx, max);
-	puts("¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇß½À´Ï´Ù.");
+	puts("ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í–ˆìŠµë‹ˆë‹¤.");
 
 	for (i = 0; i < nx; i++)
 		printf("x[%d]=%d\n", i, x[i]);
