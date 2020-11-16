@@ -1,50 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void merge(const int a[], int na, const int b[], int nb, int c[]){
-	int pa = 0;
-	int pb = 0;
-	int pc = 0;
+void fsort(int a[], int max) {
+	int i;
+	int* f = calloc(max + 1, sizeof(int));
+	int* b = calloc(n, sizeof(int));
 
-	while (pa < na && pb < nb)
-		c[pc++] = (a[pa] <= b[pb]) ? a[pa++] : b[pb++];
-	while (pa < na)
-		c[pc++] = a[pa++];
-	while (pb < nb)
-		c[pc++] = b[pb++];
+	for (i = 0; i < max; i++)f[i] = 0;
+	for (i = 0; i < n; i++)f[a[i]]++;
+	for (i = 1; i < max; i++)f[i] += f[i - 1];
+	for (i = n - 1; i >= 0; i--)b[--f[a[i]]] = a[i];
+	for (i = 0; i < n; i++)a[i] = b[i];
+
+	free(b);
+	free(f);
 }
 
-int main()
-{
-	int i, na, nb;
-	int* a, * b, * c;
-	printf("a의 요소 개수 : "); scanf_s("%d", &na);
-	printf("b의 요소 개수 : "); scanf_s("%d", &nb);
-	a = calloc(na, sizeof(int));
-	b = calloc(nb, sizeof(int));
-	c = calloc(na + nb, sizeof(int));
-	printf("a[0] : ");
-	scanf_s("%d", &a[0]);
-	for (i = 1; i < na; i++) {
+int main(void) {
+	int i, nx;
+	int* x;
+	const int max = 100;
+	puts("도수정렬");
+	printf("요소개수: ");
+
+	scanf("%d", &nx);
+	x = calloc(nx, sizeof(int));
+	printf("0~%d의 정수를 입력하세요.\n", max);
+
+	for (i = 0; i < nx; i++) {
 		do {
-			printf("a[%d] : ", i);
-			scanf_s("%d", &a[i]);
-		} while (a[i] < a[i - 1]);
-	}
-	printf("b[0] : ");
-	scanf_s("%d", &b[0]);
-	for (i = 1; i < nb; i++) {
-		do {
-			printf("b[%d] : ", i);
-			scanf_s("%d", &b[i]);
-		} while (b[i] < b[i - 1]);
+			printf("x[%d]: ", i);
+			scanf("%d", &x[i]);
+		} while (x[i]<0 || x[i]>max);
 	}
 
-	merge(a, na, b, nb, c);
-	puts("배열 a와 b를 병합하여 배열 c에 저장했습니다.");
-	for (i = 0; i < na + nb; i++)
-		printf("c[2%d] = %2d\n", i, c[i]);
-	free(a); free(b); free(c);
+	fsort(x, nx, max);
+	puts("오름차순으로 정렬했습니다.");
+
+	for (i = 0; i < nx; i++)
+		printf("x[%d]=%d\n", i, x[i]);
+	
+	free(x);
 
 	return 0;
 }
