@@ -1,19 +1,42 @@
 #include<stdio.h>
-void swap_ptr(char** x, char** y){
-	char* tmp = *x;
-	*x = *y;
-	*y = tmp;
+#include<stdio.h>
+int main()
+{
+char st[10] = "ABCD";
+printf("문자열 st에는 \"%s\"가 들어 있습니다.", st);
+return 0;
 }
 
-int main(){
-	char* s1 = (char*)"ABCD";
-	char* s2 = (char*)"EFGH";
-	printf("포인터 s1은 \"%s\"를 가리킵니다. \n", s1);
-	printf("포인터 s2은 \"%s\"를 가리킵니다. \n", s2);
-	swap_ptr(&s1, &s2);
-	puts("\n포인터 s1과 s2의 값을 서로 교환했습니다. \n");
-	printf("포인터 s1은 \"%s\"를 가리킵니다. \n", s1);
-	printf("포인터 s2은 \"%s\"를 가리킵니다. \n", s2);
-	
-	return 0;
+/*
+#include<stdio.h>
+#include<limits.h>
+void str_dump(const char* s)
+{
+do {
+int i;
+printf("%c %0*X", *s, (CHAR_BIT + 3) / 4, *s);
+for (i = CHAR_BIT - 1; i >= 0; i--)
+putchar(((*s >> i) & 1U) ? '1' : '0');
+putchar('\n');
+} while (*s++ != '\0');
 }
+int main()
+{
+str_dump("STRING");
+return 0;
+}
+*/
+
+/*
+#include<stdio.h>
+int main() {
+char st[10];
+st[0] = 'A';
+st[1] = 'B';
+st[2] = 'C';
+st[3] = 'D';
+st[4] = '\0';
+printf("문자열 st에는 \"%s\"가 들어 있습니다.\n", st);
+return 0;
+}
+*/
