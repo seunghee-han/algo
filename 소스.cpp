@@ -3,8 +3,9 @@
 int bf_match(const char txt[], const char pat[]) {
 	int pt = 0;
 	int pp = 0;
+	int opt = 0;
 	while (txt[pt] != '\0' && pat[pp] != '\0') {
-		/*  
+		/*  문제
 		* if(pp==0){
 		* printf("%d",pt);
 		* } else{
@@ -12,12 +13,15 @@ int bf_match(const char txt[], const char pat[]) {
 		* }
 		*/
 		if (txt[pt] == pat[pp]) {
+			//printf("+");
 			pt++;
 			pp++;
 		}
 		else {
+			//printf("|");
 			pt = pt - pp + 1;
 			pp = 0;
+			//opt = pt;
 		}
 	}
 	if (pat[pp] == '\0')
@@ -42,6 +46,3 @@ int main(void) {
 
 	return 0;
 }
-
-/*
-*/
