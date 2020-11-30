@@ -2,16 +2,15 @@
 #include<stdio.h>
 #include<string.h>
 
-int main()
-{
+int main(){
 	char name[10];
 	scanf("%s", name);
 
-	if (strcmp(name, "kwon") == 0) {
-		printf("%s, ¾È³ç.\n", name);
+	if (strcmp(name, "hee") == 0) {
+		printf("%s, Â¾ÃˆÂ³Ã§.\n", name);
 	}
 	else {
-		printf("%s´Ô, ¾È³çÇÏ¼¼¿ä.\n", name);
+		printf("%sÂ´Ã”, Â¾ÃˆÂ³Ã§Ã‡ÃÂ¼Â¼Â¿Ã¤.\n", name);
 	}
 }
 
