@@ -4,6 +4,13 @@ int bf_match(const char txt[], const char pat[]) {
 	int pt = 0;
 	int pp = 0;
 	while (txt[pt] != '\0' && pat[pp] != '\0') {
+		/*  
+		* if(pp==0){
+		* printf("%d",pt);
+		* } else{
+		* printf(" ");
+		* }
+		*/
 		if (txt[pt] == pat[pp]) {
 			pt++;
 			pp++;
@@ -22,16 +29,19 @@ int main(void) {
 	int idx;
 	char s1[256];
 	char s2[256];
-	puts("ºÎ·çÆ®-Æ÷½º¹ı");
-	printf("ÅØ½ºÆ® : ");
+	puts("ë¶€ë£¨íŠ¸-í¬ìŠ¤ë²•");
+	printf("í…ìŠ¤íŠ¸ : ");
 	scanf("%s", s1);
-	printf("ÆĞÅÏ : ");
+	printf("íŒ¨í„´ : ");
 	scanf("%s", s2);
 	idx = bf_match(s1, s2);
 	if (idx == -1)
-		puts("ÅØ½ºÆ®¿¡ ÆĞÅÏÀÌ ¾ø½À´Ï´Ù.");
+		puts("í…ìŠ¤íŠ¸ì— íŒ¨í„´ì´ ì—†ìŠµë‹ˆë‹¤.");
 	else
-		printf("%d¹øÂ° ¹®ÀÚºÎÅÍ matchÇÕ´Ï´Ù.\n", idx + 1);
+		printf("%dë²ˆì§¸ ë¬¸ìë¶€í„° matchí•©ë‹ˆë‹¤.\n", idx + 1);
 
 	return 0;
 }
+
+/*
+*/
