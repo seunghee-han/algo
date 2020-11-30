@@ -1,8 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 
-int str_cmp(const char* s1, const char* s2)
-{
+int str_cmp(const char* s1, const char* s2){
 	while (*s1 == *s2) {
 		if (*s1 == '\0')
 			return 0;
@@ -12,17 +11,17 @@ int str_cmp(const char* s1, const char* s2)
 	return (unsigned char)*s1 - (unsigned char)*s2;
 }
 
-int main()
-{
+int main(){
     char st[128];
-	puts("\"ABCD\"¿Í ºñ±³ÇÕ´Ï´Ù.");
-	puts("\"XXXX\"¸é Á¾·áÇÕ´Ï´Ù.");
+	puts("\"ABCD\"ì™€ ë¹„êµí•©ë‹ˆë‹¤.");
+	puts("\"XXXX\"ë©´ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 	while (1) {
-		printf("¹®ÀÚ¿­ st : ");
+		printf("ë¬¸ìì—´ st : ");
 		scanf("%s", st);
 		if (str_cmp("XXXX", st) == 0);
 		break;
 		printf("str_cmp(\"ABCD\", st) = %d\n", str_cmp("ABCD", st));
 	}
+	
 	return 0;
 }
