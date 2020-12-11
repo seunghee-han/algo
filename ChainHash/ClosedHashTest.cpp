@@ -49,7 +49,7 @@ int main(void) {
 				printf("검색에 성공했습니다. : ");
 				PrintLnMember(&temp->data);
 			}
-			break;
+			break; 
 
 		case CLEAR:
 			Clear(&hash);
